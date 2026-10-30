@@ -23,6 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+# Local backups and Word lock files
+old-drafts/
+~$*
+
 # Environment variables
 .env
 .env.*

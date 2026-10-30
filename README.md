@@ -1,32 +1,81 @@
-# React + TypeScript + Vite
+# מתכוניםלי – צד ה־React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+אתר לשיתוף מתכונים: שומרים מתכונים (ציבוריים או פרטיים), שומרים מתכונים של אחרים בספר אישי, שואלים ועונים בפורום עזרה, ומנהל מאשר תוכן עם סרטון או תמונה לפני שהוא מתפרסם.
 
-Currently, two official plugins are available:
+זהו צד הלקוח. השרת (Node.js, Express, PostgreSQL) נמצא ב־Repository נפרד.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## טכנולוגיות
 
-## React Compiler
+| מה | ספרייה |
+| --- | --- |
+| בסיס | React 19, TypeScript, Vite |
+| ניתובים | React Router |
+| טפסים וולידציה | React Hook Form, Zod |
+| מידע מהשרת | TanStack React Query, Axios |
+| משתמשת מחוברת | React Context (`AuthContext`) |
+| עיצוב | Tailwind CSS 4, אייקונים מ־lucide-react |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## התקנה והפעלה
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+cp .env.example .env     # ולעדכן את כתובת השרת
+npm run dev              # http://localhost:5173
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+פקודות נוספות: `npm run build` (בנייה לפרודקשן), `npm run lint` (בדיקת קוד).
+
+## משתני סביבה
+
+| משתנה | דוגמה | הסבר |
+| --- | --- | --- |
+| `VITE_API_URL` | `http://localhost:3000` | כתובת השרת, בלי `/` בסוף ובלי `/api` |
+
+הערך נכנס לאתר בזמן הבנייה, ולכן אין לשים בו שום דבר סודי.
+
+## משתמשים לבדיקה
+
+במחשב, אחרי `npm run db:seed` בשרת:
+
+| תפקיד | אימייל | סיסמה |
+| --- | --- | --- |
+| מנהל | admin@example.com | Admin12345 |
+| משתמשת | user@example.com | User12345 |
+
+בענן, המנהל נוצר מ־`ADMIN_EMAIL` ו־`ADMIN_PASSWORD` שבהגדרות השרת.
+
+## מבנה התיקיות
+
+```
+src/
+  api/          קריאות לשרת. api.ts: מופע axios, צירוף Token, טיפול ב־401 והודעות שגיאה
+  context/      AuthContext (משתמשת מחוברת ו־Token) והודעות קופצות (Toast)
+  routes/       ProtectedRoute (למחוברות) ו־AdminRoute (למנהל)
+  pages/        עמוד לכל מסך
+  components/   layout (תפריט, פעמון, תפריט משתמש), recipes, forum, assistant, ui (רכיבים כלליים)
+  hooks/        useDebounce, useParamState (סינון שנשמר בכתובת), useCategories, useClickOutside
+  lib/          תוויות בעברית, עיצוב זמנים ותאריכים, מחלקות עיצוב משותפות
+  types/        טיפוסים לכל מה שהשרת מחזיר
+```
+
+## המסכים
+
+| כתובת | מסך | למי |
+| --- | --- | --- |
+| `/` | דף הבית: חיפוש, סינון (קטגוריה, קושי, סוג, זמן, מצרכים), מיון ועמודים. למנהל: כל המתכונים | כולם |
+| `/recipes/:id` | דף מתכון, שמירה לספר, עריכה ומחיקה לפי הרשאות | כולם |
+| `/forum` | פורום עזרה: שאלה נפתחת בתוך הדף עם התשובות וטופס תשובה | כולם |
+| `/login`, `/register` | התחברות והרשמה | אורחים |
+| `/recipes/new`, `/recipes/:id/edit` | טופס מתכון | מחוברות |
+| `/my-recipes` | המתכונים שלי, עם סטטוס | מחוברות |
+| `/cookbook` | הספר שלי | מחוברות |
+| `/forum/new`, `/forum/:id/edit` | טופס שאלה | מחוברות |
+| `/profile` | הפרופיל שלי ופרטי קשר | מחוברות |
+| `/admin/pending` | תור אישורים | מנהל |
+| `/admin/categories` | ניהול קטגוריות | מנהל |
+
+בנוסף: פעמון התראות בתפריט (מתרענן כל דקה), מונה שאלות שממתינות לתשובה ליד "פורום עזרה", ועוזר אישי ("מה לבשל?") שמוצא מתכונים לפי מה שיש בבית.
+
+## פריסה
+
+האתר מוגדר כ־Static Site ב־Render בקובץ `render.yaml`, כולל כלל Rewrite שמאפשר רענון בעמודים פנימיים. כל דחיפה לענף `main` בונה ומעלה את האתר מחדש.
