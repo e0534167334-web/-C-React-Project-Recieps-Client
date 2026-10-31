@@ -18,12 +18,10 @@ const SIZES: Record<ButtonSize, string> = {
     lg: "h-12 px-6 text-base",
 };
 
-/** מחלקות של כפתור, גם לקישורים שנראים כמו כפתור */
 export function buttonClass(variant: ButtonVariant = "primary", size: ButtonSize = "md", extra = "") {
     return `${BASE} ${VARIANTS[variant]} ${SIZES[size]} ${extra}`;
 }
 
-/** בלי רוחב: כל שדה מקבל w-full, או רוחב אחר שהועבר ב־className */
 export const inputClass =
     "rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-sm text-stone-800 shadow-sm transition placeholder:text-stone-400 hover:border-stone-300 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-100 aria-[invalid=true]:border-red-300 aria-[invalid=true]:focus:ring-red-100";
 

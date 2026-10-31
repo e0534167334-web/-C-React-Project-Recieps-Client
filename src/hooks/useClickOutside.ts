@@ -1,6 +1,5 @@
 import { useEffect, type RefObject } from "react";
 
-/** קורא ל־onOutside בלחיצה מחוץ לאלמנט, או ב־Escape */
 export function useClickOutside(ref: RefObject<HTMLElement | null>, onOutside: () => void, active: boolean) {
     useEffect(() => {
         if (!active) return;

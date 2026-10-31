@@ -8,7 +8,6 @@ interface AuthCardProps {
     footer: ReactNode;
 }
 
-/** מסגרת משותפת לעמודי התחברות והרשמה */
 export function AuthCard({ emoji, title, subtitle, children, footer }: AuthCardProps) {
     return (
         <div className="mx-auto max-w-md animate-slide-up py-4 sm:py-8">

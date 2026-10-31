@@ -29,7 +29,6 @@ export function NotificationBell() {
     const close = useCallback(() => setOpen(false), []);
     useClickOutside(ref, close, open);
 
-    // המספר על הפעמון מתרענן כל דקה
     const countQuery = useQuery({
         queryKey: ["notifications", "count"],
         queryFn: () => getNotifications({ unreadOnly: true, pageSize: 1 }),

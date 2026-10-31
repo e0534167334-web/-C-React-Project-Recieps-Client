@@ -14,9 +14,7 @@ const KOSHER_TONES: Record<KosherType, "red" | "blue" | "green"> = {
 
 interface RecipeCardProps {
     recipe: RecipeListItem | CookbookItem;
-    /** בעמודים האישיים: מציגים סטטוס ונראות */
     showStatus?: boolean;
-    /** כפתורים נוספים בתחתית הכרטיס */
     actions?: ReactNode;
 }
 

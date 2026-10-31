@@ -22,7 +22,6 @@ interface QuestionItemProps {
     onToggle: () => void;
 }
 
-/** שאלה ברשימה. בלחיצה היא נפתחת בתוך הדף, עם התשובות וטופס תשובה */
 export function QuestionItem({ question, open, onToggle }: QuestionItemProps) {
     return (
         <li
@@ -77,7 +76,6 @@ function QuestionThread({ question }: { question: Question }) {
     const queryClient = useQueryClient();
     const [confirmDelete, setConfirmDelete] = useState(false);
 
-    // התשובות נטענות רק כשהשאלה נפתחת
     const answers = useQuery({
         queryKey: ["forum", "answers", question.id],
         queryFn: () => getAnswers(question.id),

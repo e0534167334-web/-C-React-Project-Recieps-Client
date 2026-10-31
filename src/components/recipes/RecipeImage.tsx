@@ -9,7 +9,6 @@ interface RecipeImageProps {
     emojiSize?: string;
 }
 
-/** תמונת המתכון, ובלי תמונה: רקע צבעוני עם אימוג׳י של הקטגוריה */
 export function RecipeImage({ imageUrl, title, category, className = "", emojiSize = "text-5xl" }: RecipeImageProps) {
     if (imageUrl) {
         return <img src={imageUrl} alt={title} loading="lazy" className={`object-cover ${className}`} />;

@@ -13,7 +13,6 @@ const queryClient = new QueryClient({
         queries: {
             staleTime: 30_000,
             refetchOnWindowFocus: false,
-            // שגיאות כמו 401, 403 ו־404 לא ישתנו בניסיון חוזר. רק תקלות רשת ושרת
             retry: (failureCount, error) => {
                 const status = getErrorStatus(error);
                 return failureCount < 2 && (status === undefined || status >= 500);

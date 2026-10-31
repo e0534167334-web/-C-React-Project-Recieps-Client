@@ -47,7 +47,6 @@ export function RegisterPage() {
             navigate("/", { replace: true });
         },
         onError: (error) => {
-            // אימייל תפוס (409) מוצג ליד שדה האימייל
             if (getErrorStatus(error) === 409) {
                 setError("email", { message: getErrorMessage(error) });
             }

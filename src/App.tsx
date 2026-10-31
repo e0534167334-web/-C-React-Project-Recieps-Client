@@ -5,7 +5,6 @@ import { AdminRoute } from "./routes/AdminRoute";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { HomePage } from "./pages/HomePage";
 
-// שאר העמודים נטענים רק כשנכנסים אליהם, כדי שהטעינה הראשונה תהיה מהירה
 const RecipePage = lazy(() => import("./pages/RecipePage").then((m) => ({ default: m.RecipePage })));
 const ForumPage = lazy(() => import("./pages/ForumPage").then((m) => ({ default: m.ForumPage })));
 const LoginPage = lazy(() => import("./pages/LoginPage").then((m) => ({ default: m.LoginPage })));
@@ -23,14 +22,12 @@ function App() {
     return (
         <Routes>
             <Route element={<Layout />}>
-                {/* פתוח לכולם */}
                 <Route index element={<HomePage />} />
                 <Route path="recipes/:id" element={<RecipePage />} />
                 <Route path="forum" element={<ForumPage />} />
                 <Route path="login" element={<LoginPage />} />
                 <Route path="register" element={<RegisterPage />} />
 
-                {/* למחוברות בלבד */}
                 <Route element={<ProtectedRoute />}>
                     <Route path="recipes/new" element={<RecipeFormPage />} />
                     <Route path="recipes/:id/edit" element={<RecipeFormPage />} />
@@ -41,7 +38,6 @@ function App() {
                     <Route path="profile" element={<ProfilePage />} />
                 </Route>
 
-                {/* למנהל בלבד */}
                 <Route element={<AdminRoute />}>
                     <Route path="admin/pending" element={<AdminPendingPage />} />
                     <Route path="admin/categories" element={<AdminCategoriesPage />} />

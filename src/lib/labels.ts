@@ -27,7 +27,6 @@ export const DIFFICULTIES = Object.keys(DIFFICULTY_LABELS) as Difficulty[];
 export const KOSHER_TYPES = Object.keys(KOSHER_LABELS) as KosherType[];
 export const STATUSES = Object.keys(STATUS_LABELS) as ModerationStatus[];
 
-/** סיבות דחייה מוכנות לבחירה בתור האישורים */
 export const REJECTION_REASONS = [
     "התמונה או הסרטון לא קשורים לתוכן",
     "תוכן לא מתאים לאתר",
@@ -35,7 +34,6 @@ export const REJECTION_REASONS = [
     "תוכן כפול",
 ];
 
-/** 90 → "שעה ו־30 דק׳" */
 export function formatPrepTime(minutes: number | null): string | null {
     if (minutes === null) return null;
     if (minutes < 60) return `${minutes} דק׳`;
@@ -48,7 +46,6 @@ export function formatPrepTime(minutes: number | null): string | null {
 const relative = new Intl.RelativeTimeFormat("he", { numeric: "auto" });
 const fullDate = new Intl.DateTimeFormat("he", { day: "numeric", month: "long", year: "numeric" });
 
-/** "לפני 3 ימים", ותאריך מלא אחרי חודש */
 export function formatRelativeDate(iso: string): string {
     const seconds = (new Date(iso).getTime() - Date.now()) / 1000;
     const abs = Math.abs(seconds);
@@ -75,7 +72,6 @@ const CATEGORY_EMOJIS: [string, string][] = [
     ["משק", "🥤"],
 ];
 
-/** אימוג׳י לפי שם הקטגוריה, לכרטיסי מתכון בלי תמונה */
 export function categoryEmoji(name: string): string {
     return CATEGORY_EMOJIS.find(([key]) => name.includes(key))?.[1] ?? "🍽️";
 }
@@ -89,7 +85,6 @@ const GRADIENTS = [
     "from-violet-100 to-fuchsia-50",
 ];
 
-/** רקע קבוע לכל קטגוריה */
 export function categoryGradient(categoryId: number): string {
     return GRADIENTS[categoryId % GRADIENTS.length];
 }

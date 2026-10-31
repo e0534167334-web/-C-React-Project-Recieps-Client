@@ -54,7 +54,6 @@ function toInput(data: QuestionFormData): QuestionInput {
     };
 }
 
-// שם השדה בטופס ← שם השדה שנשלח לשרת
 const FIELD_TO_INPUT: Record<keyof QuestionFormData, keyof QuestionInput> = {
     title: "title",
     body: "body",

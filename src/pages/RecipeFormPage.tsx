@@ -16,7 +16,6 @@ import { Button } from "../components/ui/Button";
 import { Checkbox, Field, Input, Select, Textarea } from "../components/ui/Field";
 import { EmptyState, ErrorState, PageLoader } from "../components/ui/States";
 
-/** שדה מספר אופציונלי: ריק, או מספר שלם בטווח */
 const optionalInt = (min: number, max: number, message: string) =>
     z
         .string()
@@ -71,7 +70,6 @@ function toFormData(recipe: RecipeDetail): RecipeFormData {
         kosherType: recipe.kosherType,
         prepTimeMinutes: recipe.prepTimeMinutes?.toString() ?? "",
         servings: recipe.servings?.toString() ?? "",
-        // מערך הרכיבים חוזר לטקסט, שורה לכל רכיב
         ingredients: recipe.ingredients.join("\n"),
         instructions: recipe.instructions,
         videoUrl: recipe.videoUrl ?? "",
@@ -80,7 +78,6 @@ function toFormData(recipe: RecipeDetail): RecipeFormData {
     };
 }
 
-/** מהטופס (מחרוזות) למה שהשרת מצפה לקבל (מספרים ו־null) */
 function toInput(data: RecipeFormData): RecipeInput {
     return {
         title: data.title.trim(),
@@ -134,7 +131,6 @@ export function RecipeFormPage() {
         defaultValues: EMPTY,
     });
 
-    // בעריכה: ממלאים את הטופס כשהמתכון נטען
     useEffect(() => {
         if (existing.data) reset(toFormData(existing.data));
     }, [existing.data, reset]);
@@ -143,7 +139,6 @@ export function RecipeFormPage() {
         mutationFn: (data: RecipeFormData) => {
             const input = toInput(data);
             if (!isEdit) return createRecipe(input);
-            // בעריכה שולחים רק את השדות שהשתנו
             const changed = Object.fromEntries(
                 Object.keys(dirtyFields).map((key) => [key, input[key as keyof RecipeInput]])
             ) as Partial<RecipeInput>;

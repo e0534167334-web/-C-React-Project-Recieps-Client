@@ -19,7 +19,6 @@ const EXAMPLES = ["יש לי ביצים, קישואים וגבינה", "משהו
 
 let nextId = 1;
 
-/** העוזר האישי: כותבים מה יש בבית ומקבלים מתכונים מתאימים */
 export function AssistantWidget() {
     const [open, setOpen] = useState(false);
     const [text, setText] = useState("");

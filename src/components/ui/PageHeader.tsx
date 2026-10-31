@@ -24,7 +24,6 @@ interface TabsProps<T extends string> {
     onChange: (value: T) => void;
 }
 
-/** לשוניות סינון בסגנון "גלולות" */
 export function Tabs<T extends string>({ value, options, onChange }: TabsProps<T>) {
     return (
         <div className="flex flex-wrap gap-1 rounded-xl border border-stone-200 bg-white p-1 shadow-sm" role="tablist">

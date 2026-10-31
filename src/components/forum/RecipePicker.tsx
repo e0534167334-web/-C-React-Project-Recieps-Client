@@ -18,7 +18,6 @@ interface RecipePickerProps {
     onChange: (recipe: PickedRecipe | null) => void;
 }
 
-/** בחירת מתכון קשור: מקלידים שם ובוחרים מהתוצאות */
 export function RecipePicker({ id, value, onChange }: RecipePickerProps) {
     const [text, setText] = useState("");
     const [open, setOpen] = useState(false);

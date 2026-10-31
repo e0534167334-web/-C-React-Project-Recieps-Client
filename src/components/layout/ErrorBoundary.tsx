@@ -3,7 +3,6 @@ import { ErrorState } from "../ui/States";
 
 interface Props {
     children: ReactNode;
-    /** שינוי במפתח (למשל מעבר עמוד) מאפס את השגיאה */
     resetKey: string;
 }
 
@@ -12,7 +11,6 @@ interface State {
     resetKey: string;
 }
 
-/** תופס שגיאה בעמוד ומציג הודעה, במקום מסך לבן */
 export class ErrorBoundary extends Component<Props, State> {
     state: State = { hasError: false, resetKey: this.props.resetKey };
 

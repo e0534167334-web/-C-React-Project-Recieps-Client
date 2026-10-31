@@ -115,7 +115,6 @@ export function RecipePage() {
                 <ArrowRight className="size-4" /> לכל המתכונים
             </Link>
 
-            {/* הודעה לכותבת על סטטוס האישור */}
             {isMine && recipe.status === "PENDING" && (
                 <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-900">
                     <p className="font-semibold">המתכון ממתין לאישור מנהל</p>

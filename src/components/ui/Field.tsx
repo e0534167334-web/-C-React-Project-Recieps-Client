@@ -10,7 +10,6 @@ interface FieldProps {
     children: ReactNode;
 }
 
-/** תווית, שדה, הודעת עזרה והודעת שגיאה */
 export function Field({ label, htmlFor, error, hint, required, children }: FieldProps) {
     return (
         <div className="space-y-1.5">
@@ -30,7 +29,6 @@ export function Field({ label, htmlFor, error, hint, required, children }: Field
     );
 }
 
-/** רוחב מלא, אלא אם הועבר רוחב אחר (למשל w-auto) */
 const width = (className: string) => (/(^|\s)w-/.test(className) ? "" : "w-full");
 
 export function Input({ className = "", ...props }: ComponentProps<"input">) {

@@ -51,7 +51,6 @@ export interface RecipeInput {
     showContact: boolean;
 }
 
-// ===== מתכונים =====
 
 export async function getRecipes(params: RecipeQuery) {
     const response = await api.get<Page<RecipeListItem>>("/api/recipes", { params });
@@ -82,7 +81,6 @@ export async function deleteRecipe(id: number) {
     await api.delete(`/api/recipes/${id}`);
 }
 
-// ===== קטגוריות =====
 
 export async function getCategories() {
     const response = await api.get<Category[]>("/api/categories");
@@ -103,7 +101,6 @@ export async function deleteCategory(id: number) {
     await api.delete(`/api/categories/${id}`);
 }
 
-// ===== הספר שלי =====
 
 export async function getCookbook(params: { search?: string; page?: number; pageSize?: number }) {
     const response = await api.get<Page<CookbookItem>>("/api/cookbook", { params });

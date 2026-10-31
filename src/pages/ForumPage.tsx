@@ -53,7 +53,6 @@ export function ForumPage() {
         placeholderData: keepPreviousData,
     });
 
-    // שאלה שנפתחה מקישור (למשל מהתראה) ואינה בעמוד הנוכחי: טוענים אותה בנפרד
     const inList = questions.data?.items.some((q) => q.id === openId);
     const pinned = useQuery({
         queryKey: ["forum", "question", openId],
@@ -62,7 +61,6 @@ export function ForumPage() {
         retry: false,
     });
 
-    // גלילה לשאלה שנפתחה מקישור חיצוני (התראה), ולא בלחיצה בתוך הרשימה
     const openedByClick = useRef(false);
     useEffect(() => {
         if (openedByClick.current) {
@@ -73,7 +71,6 @@ export function ForumPage() {
         document.getElementById(`question-${openId}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, [openId, questions.isSuccess, pinned.isSuccess]);
 
-    // פתיחה וסגירה של שאלה לא מחזירות לעמוד 1
     const toggle = (id: number) => {
         openedByClick.current = true;
         set({ open: openId === id ? undefined : String(id), page: get("page") || undefined });

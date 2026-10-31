@@ -9,7 +9,6 @@ import { Header } from "./Header";
 export function Layout() {
     const { pathname } = useLocation();
 
-    // כל מעבר עמוד מתחיל מלמעלה
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);

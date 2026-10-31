@@ -43,7 +43,6 @@ export function AdminPendingPage() {
         mutationFn: (v: { card: PendingCard; decision: "APPROVED" | "REJECTED"; reason?: string }) =>
             moderate(v.card.type, v.card.id, v.decision, v.reason),
         onSuccess: (_, v) => {
-            // אחרי החלטה משתנים התור, הרשימות והמונה בפורום
             queryClient.invalidateQueries({ queryKey: ["admin"] });
             queryClient.invalidateQueries({ queryKey: ["recipes"] });
             queryClient.invalidateQueries({ queryKey: ["recipe"] });

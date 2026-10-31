@@ -18,13 +18,11 @@ interface NavItem {
 export function Header() {
     const { user, isAdmin, isLoading } = useAuth();
     const location = useLocation();
-    // התפריט בנייד פתוח רק בעמוד שבו פתחו אותו, ולכן נסגר לבד במעבר עמוד
     const [openOnPage, setOpenOnPage] = useState<string | null>(null);
     const mobileOpen = openOnPage === location.key;
     const setMobileOpen = (toggle: (open: boolean) => boolean) =>
         setOpenOnPage(toggle(mobileOpen) ? location.key : null);
 
-    // מספר השאלות שממתינות לתשובה, ליד "פורום עזרה"
     const statsQuery = useQuery({
         queryKey: ["forum", "stats"],
         queryFn: getForumStats,

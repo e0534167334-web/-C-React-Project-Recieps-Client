@@ -7,7 +7,6 @@ interface PaginationProps {
     onChange: (page: number) => void;
 }
 
-/** בעברית "הבא" הוא שמאלה, ולכן החצים הפוכים */
 export function Pagination({ page, totalPages, onChange }: PaginationProps) {
     if (totalPages <= 1) return null;
 

@@ -62,13 +62,11 @@ export function HomePage() {
     const activeFilters = FILTER_KEYS.filter((k) => get(k)).length;
     const hasAnyFilter = activeFilters > 0 || !!query.search;
 
-    // "ביצים, קישוא" → "ביצים,קישוא"
     const onIngredients = (value: string) =>
         set({ ingredients: value.split(/[,،]/).map((s) => s.trim()).filter(Boolean).join(",") || undefined });
 
     return (
         <div className="space-y-8">
-            {/* כותרת וחיפוש */}
             <section className="relative overflow-hidden rounded-3xl bg-gradient-to-bl from-brand-100 via-orange-50 to-amber-50 px-6 py-10 sm:px-10 sm:py-14">
                 <div className="pointer-events-none absolute -top-6 end-6 hidden text-[8rem] leading-none opacity-20 select-none sm:block" aria-hidden>
                     🍋
@@ -91,7 +89,6 @@ export function HomePage() {
                 </div>
             </section>
 
-            {/* סינון ומיון */}
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center gap-2">
                     <button
@@ -109,7 +106,6 @@ export function HomePage() {
                         )}
                     </button>
 
-                    {/* בשרי / חלבי / פרווה: בחירה מהירה */}
                     <div className="flex rounded-xl border border-stone-200 bg-white p-1 shadow-sm">
                         {KOSHER_TYPES.map((k) => (
                             <button
@@ -199,7 +195,6 @@ export function HomePage() {
                     </div>
                 )}
 
-                {/* למנהל: כל המתכונים במערכת */}
                 {isAdmin && (
                     <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50/60 px-4 py-3">
                         <ShieldCheck className="size-5 text-brand-600" />
@@ -242,7 +237,6 @@ export function HomePage() {
                 </div>
             </section>
 
-            {/* התוצאות */}
             <section className={recipes.isPlaceholderData ? "opacity-60 transition-opacity" : "transition-opacity"}>
                 {recipes.isPending ? (
                     <RecipeGrid>

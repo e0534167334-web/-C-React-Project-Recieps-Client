@@ -25,6 +25,8 @@ dist-ssr
 
 # Local backups and Word lock files
 old-drafts/
+.publish/
+publish-preview/
 ~$*
 
 # Environment variables

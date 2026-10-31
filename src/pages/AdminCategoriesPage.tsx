@@ -41,7 +41,6 @@ export function AdminCategoriesPage() {
         mutationFn: (v: { id: number; name: string }) => renameCategory(v.id, v.name),
         onSuccess: () => {
             refresh();
-            // שם הקטגוריה מופיע גם בכרטיסי המתכונים
             queryClient.invalidateQueries({ queryKey: ["recipes"] });
             setEditing(null);
             toast("שם הקטגוריה עודכן");

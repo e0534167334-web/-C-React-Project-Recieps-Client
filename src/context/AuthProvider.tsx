@@ -11,7 +11,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const navigate = useNavigate();
     const [token, setToken] = useState<string | null>(() => localStorage.getItem(TOKEN_KEY));
 
-    // בטעינת האתר: אם יש Token שמור, בודקים מול השרת מי מחוברת
     const meQuery = useQuery({
         queryKey: ["me"],
         queryFn: getMe,
@@ -24,7 +23,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.setItem(TOKEN_KEY, auth.token);
             setToken(auth.token);
             queryClient.setQueryData(["me"], auth.user);
-            // מידע שנטען כאורחת (למשל isSaved) נטען מחדש עם ה־Token
             queryClient.invalidateQueries({ predicate: (q) => q.queryKey[0] !== "me" });
         },
         [queryClient]
@@ -33,7 +31,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const logout = useCallback(() => {
         localStorage.removeItem(TOKEN_KEY);
         setToken(null);
-        // מנקים את כל המידע האישי שנשמר ב־React Query
         queryClient.removeQueries({ queryKey: ["me"] });
         queryClient.resetQueries();
     }, [queryClient]);
@@ -43,7 +40,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         [queryClient]
     );
 
-    // ה־interceptor שולח את האירוע כשהשרת מחזיר 401 לבקשה עם Token
     useEffect(() => {
         const onExpired = () => {
             logout();

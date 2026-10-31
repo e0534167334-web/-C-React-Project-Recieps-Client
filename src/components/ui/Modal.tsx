@@ -11,7 +11,6 @@ interface ModalProps {
 }
 
 export function Modal({ open, title, onClose, children, footer }: ModalProps) {
-    // סגירה ב־Escape ומניעת גלילה של הדף מאחור
     useEffect(() => {
         if (!open) return;
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();

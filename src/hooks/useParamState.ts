@@ -1,16 +1,11 @@
 import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 
-/**
- * מצב סינון שנשמר בכתובת (?search=...&page=2).
- * כך אפשר לשתף קישור, וכפתור "אחורה" מחזיר לסינון הקודם.
- */
 export function useParamState() {
     const [params, setParams] = useSearchParams();
 
     const get = useCallback((key: string) => params.get(key) ?? "", [params]);
 
-    /** עדכון ערכים. כל שינוי שאינו מעבר עמוד מחזיר לעמוד 1 */
     const set = useCallback(
         (updates: Record<string, string | undefined>) => {
             setParams(

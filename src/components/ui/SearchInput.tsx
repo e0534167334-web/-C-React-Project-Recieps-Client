@@ -11,22 +11,19 @@ interface SearchInputProps {
     large?: boolean;
 }
 
-/** שדה חיפוש ששולח את הערך חצי שנייה אחרי שמפסיקים להקליד */
 export function SearchInput({ value, onChange, placeholder, className = "", large }: SearchInputProps) {
     const [text, setText] = useState(value);
     const [prevValue, setPrevValue] = useState(value);
     const debounced = useDebounce(text, 450);
 
-    // ערך חיצוני חדש (למשל "ניקוי סינונים") מעדכן את השדה
     if (value !== prevValue) {
         setPrevValue(value);
         setText(value);
     }
 
-    // רץ רק כשהטקסט המושהה משתנה, ולא כשהערך החיצוני משתנה
     useEffect(() => {
         if (debounced.trim() !== value) onChange(debounced.trim());
-    }, [debounced]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [debounced]);
 
     return (
         <div className={`relative ${className}`}>
